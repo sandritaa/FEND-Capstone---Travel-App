@@ -68,7 +68,7 @@ input{
 }
 
 button{
-    width.length: 0px;
+    width: fit-content;
     height: 30px;
     background: #f6f6f6;
     color: black;

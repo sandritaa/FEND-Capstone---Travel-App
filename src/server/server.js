@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectDataBackEnd = {}
+myTripInfo = {}
 
 // Require Express to run server and routes
 
@@ -23,28 +23,23 @@ app.use(cors());
 app.use(express.static('website'));
 
 // Establish a connection to the server
-const port = 3000; // we always need a port name. This name is how we will be able to keep calling back
-
+const port = 3000; 
 app.listen(port, function() { //here we listen out for the port name and display friendly message to use letting them know if our code is working
   console.log(`Server running on port ${port}`) //message that will pop up if code work and we use a short cut to pull port inforamtion
 });
 
-// GET request:
-// Retrieves data from the server
-
-// POST request:
-// Submit data to the server
 
 // respond with projectData when a GET request is made to the japanfotos
-app.get('/getroute128', function (req, res){// here the '/japanfotos' is an example of a path or route. This route or path can be given any name. This is also where the information that we are sending to the server  At this stage it is just being created. Here we are also creating a function within the .get
-  res.send(projectDataBackEnd)
+app.get('/getroute128', function (req, res){
+  res.send(myTripInfo)
 });
 
 // Prepared server to receive data
 app.post('/postroute136', function (req, res) {
 
-  projectDataBackEnd.fecha = req.body("dateZeroServer")
-  projectDataBackEnd.temperatura = req.body("temperatureZeroServer")
-  projectDataBackEnd.sentimiento = req.body("userMoodZeroServer")
+    myTripInfo.city = req.body("destinationCity")
+    myTripInfo.date = req.body("arrivalDate")
+    myTripInfo.pic = req.body("destinationPic")
+    myTripInfo.weather = req.body("destinationWeather")
 
 });

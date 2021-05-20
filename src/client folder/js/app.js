@@ -1,4 +1,3 @@
-
 async function getFromServer() { //attribute names assigned in function
     const backEnd = await fetch('/getroute128'); 
     const data = await backEnd.json();
@@ -11,11 +10,12 @@ const idx = getFromServer()
 /* POST - Async Funtion*/
 
 
-async function postWaitTime(userMoodUno, dateUno, temperatureUno ) { //attribute names assigned in function
-    let processDataFrontEnd = { //crate object using the key (name) assosnged in server.js and pair with values in that we created in our function attributes. 
-        dateZeroServer: dateUno,
-        temperatureZeroServer: temperatureUno,
-        userMoodZeroServer: userMoodUno,
+async function postWaitTime(city, date, weather, picture) { //attribute names assigned in function
+    let myTripAllTogether = { //crate object using the key (name) assosnged in server.js and pair with values in that we created in our function attributes. 
+        destinationCity: city,
+        arrivalDate: date,
+        destinationWeather: weather,
+        destinationPic: picture
     }
     
 
@@ -23,7 +23,7 @@ async function postWaitTime(userMoodUno, dateUno, temperatureUno ) { //attribute
         method: 'POST',
         credentials: 'same-origin',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(processDataFrontEnd)//what the client side is sending to the server (this body extension can be pulled from server.js file)
+        body: JSON.stringify(myTripAllTogether)//what the client side is sending to the server (this body extension can be pulled from server.js file)
     }) 
    
 }
@@ -51,8 +51,17 @@ async function getWeatherApi(urlUno, keyUno, zipCodeUno) {
 
 /*  API Global Variables*/ 
 
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';// Link is provided by API
-const baseKey = '278a4bb0ed3e1dc04317050dfdf8f145';// Number key is provided by API   
+//GEONAMES API
+const geoURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';// Link is provided by API
+const geoKey = '278a4bb0ed3e1dc04317050dfdf8f145';// Number key is provided by API   
+
+//WEATHERBIT API
+const weatherURL = 
+const weatherKey =    
+
+//PINABAY API
+const pinaURL = 
+const pinaKey = 
 
 
 /*Create a new date instance dynamically with JS*/
