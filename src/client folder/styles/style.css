@@ -6,12 +6,11 @@ body{
 #app{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
+    height:150vh;
     background: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     justify-content: center;
-    grid-gap: 1em;
+    grid-gap: 10px;
     font-size: 60px;
     text-transform:uppercase;
     font-family: 'Lexend Giga', sans-serif;
@@ -22,7 +21,9 @@ body{
 } */
 
 .entry{
-    background: #f6f6f6;
+    background: #fdfdfd;
+    height: 400px;
+    margin-top: 70px;
 }
 
 /* #entryHolder{
@@ -63,6 +64,7 @@ input{
     font-size: 17px;
     font-family: 'Raleway', sans-serif;
     border: none;
+   
 }
 
 button{
@@ -75,14 +77,22 @@ button{
     border: none;
     text-transform:uppercase;
     box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
 }
 
 h1{
     font-size: 36px;
 }
 
-textarea{
-    background:#22b2da;
+footer{
+    font-family: 'Lexend Giga', sans-serif;
+    font-size: 10px;
+    text-transform:uppercase;
+    margin-top: 110px;
+    text-align: center;
+}
+
+textarea{    background:#22b2da;
     color: #000000;
     font-size: 20px;
     font-family: 'Raleway', sans-serif;
