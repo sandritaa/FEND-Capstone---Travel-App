@@ -59,7 +59,7 @@ async function geoApi(urlGeo,queryGeo,locationGeo,keyGeo) {
 
 
 
-geoApi(geoURL,geoQuery,'paris',geoKey) //only for testing
+let packGeoApi= geoApi(geoURL,geoQuery,'paris',geoKey) //only for testing
 
 
 // let a = fetch('http://api.geonames.org/searchJSON?formatted=true&q=florence&username=sandrita')
@@ -69,18 +69,21 @@ geoApi(geoURL,geoQuery,'paris',geoKey) //only for testing
 // sandrita
 
 //WEATHERBIT API
-const weatherURL = 'https://api.weatherbit.io/v2.0/forecast/daily';
-const weatherKey = '925a0421821c4963b0c150342f7e173b';
+const weatherURL = 'https://api.weatherbit.io/v2.0/forecast/daily?';
+const weatherKey = ',NC&key=925a0421821c4963b0c150342f7e173b';
+
 
 // https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543,NC&key=API_KEY
 
 
 async function weatherApi(urlWeather, keyWeather, geoApi) { 
-    const weatherFetch = await fetch(urlWeather+keyWeather+geoApi); 
+    const weatherFetch = await fetch(urlWeather+'&lat='+geoApi.lat+'&lon='+geoApi.lng+keyWeather);
     const weatherBit = await weatherFetch.json();
     return weatherBit
     // return weatherBit.main.temp 
 };
+
+let packWeatherApi=weatherApi(weatherURL,weatherKey,packGeoApi);
 
 
 // PINABAY API
@@ -91,7 +94,6 @@ const pinaKey = '?key=21697550-400e4664c2106af48cb147104&q='
 
 async function pictureApi(urlPina,keyPina,cityPina,typePina) { 
     const pictureFetch = await fetch(urlPina+keyPina+cityPina+typePina); 
-    debugger;
     const pictureBay = await pictureFetch.json(); 
     return pictureBay
     //  return pictureBay.main.temp 
@@ -108,16 +110,17 @@ let date = day.getMonth()+'.'+ day.getDate()+'.'+ day.getFullYear(); //name only
 
 /*Creating Event Listener*/
 
-// const generateListener = document.getElementById('generate');// Defining variable that will be used in event listener
+const generateListener = document.getElementById('generate');// Defining variable that will be used in event listener
 
-// generateListener.addEventListener("click", function(){ //Here we kick off our event listener
+generateListener.addEventListener("click", function(){ //Here we kick off our event listener
    
-//     const city = document.getElementById('cityDestination')
-//     const date = document.getElementById('arrivalDate').value; // Here we are pulling this information from our HTML, creating a variable where we will next the information and use it in the above function and event listener command.
-//     const temperatureDos = getWeatherApi(geoURL, geokey, geoQuery)// Create variable to nest getWeatherAPI info. Temprature variable only in app.js 
-//     .then(function(zipcodeDos, temperatureDos, userMoodDos) {
-//         postWaitTime(zipcodeDos, temperatureDos, userMoodDos)
-//     });    
+    const city = document.getElementById('cityDestination')
+    const date = document.getElementById('arrivalDate').value; // Here we are pulling this information from our HTML, creating a variable where we will next the information and use it in the above function and event listener command.
+    const temperatureDos = getWeatherApi(geoURL, geokey, geoQuery)// Create variable to nest getWeatherAPI info. Temprature variable only in app.js 
+    
+    postWaitTime(city, weather, picture, date)
+})
+  
 
 //     front end to back end (call post function we created)
 //     const idx = getFromServer() 
