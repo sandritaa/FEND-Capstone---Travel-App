@@ -15,15 +15,20 @@ body{
     text-transform:uppercase;
     font-family: 'Lexend Giga', sans-serif;
 }
+
+
 /* 
 .holder{
 
 } */
+.myTripTitle{
+    margin-top: -70px;
+}
 
 .entry{
     background: #fdfdfd;
     height: 400px;
-    margin-top: 70px;
+    margin-top: -170px;
 }
 
 /* #entryHolder{
