@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('../src/client folder/js'));
 
 // Establish a connection to the server
 const port = 3000; 
@@ -37,9 +37,11 @@ app.get('/getroute128', function (req, res){
 // Prepared server to receive data
 app.post('/postroute136', function (req, res) {
 
-    myTripInfo.city = req.body("destinationCity")
-    myTripInfo.date = req.body("arrivalDate")
-    myTripInfo.pic = req.body("destinationPic")
-    myTripInfo.weather = req.body("destinationWeather")
+    myTripInfo.city = req.body.destinationCity
+    myTripInfo.date = req.body.arrivalDate
+    myTripInfo.pic = req.body.destinationPic
+    myTripInfo.weather = req.body.destinationWeather
+    console.log(myTripInfo.city)
 
 });
+

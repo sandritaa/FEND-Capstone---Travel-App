@@ -1,5 +1,6 @@
 body{
     background: #155a09;
+    /* background: rgb(255, 255, 255);  */
     font-family: 'Raleway', sans-serif;
 }
 
@@ -93,8 +94,9 @@ footer{
     font-family: 'Lexend Giga', sans-serif;
     font-size: 10px;
     text-transform:uppercase;
-    margin-top: 110px;
+    /* margin-top: 110px; */
     text-align: center;
+    margin: 0;
 }
 
 textarea{    background:#22b2da;
