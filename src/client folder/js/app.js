@@ -211,54 +211,78 @@ async function weatherUpdate() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*TO DO LIST*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+let labelClass = document.getElementById('app'); 
+let  newlabel = document.createElement('label');
+newlabel.setAttribute('class', 'todoLabel')
+newlabel.setAttribute("for",'label');
+newlabel.innerHTML = "Trip To Do List:";
 
-        // STEP 1. Create the input bar
-        var x = document.createElement("input");
-        x.setAttribute("type", "text");
-        x.setAttribute("placeholder", "Enter to do here");
-        x.setAttribute("id", "todoInput")
-        document.body.appendChild(x)
+labelClass.appendChild(newlabel);
 
-        // STEP 2. Create the add button
-        function buttonToDoList() {
+debugger;
 
-            var createButton = document.createElement("button");
-            var buttonTxt = document.createTextNode("Click me to add");
-            createButton.appendChild(buttonTxt);
-            document.body.appendChild(createButton);
-            return createButton
-        }
+// let  label = document.createElement('label');
+       
+ 
 
-        let llk = buttonToDoList()
+    // STEP 2. Create the add button
+    function buttonToDoList() {
+        let button2 = document.getElementById('app'); 
 
-        // STEP 3. Create an empty ul
-        function toDoListSkeleton() {
 
-            const createClass = document.getElementById('app');
-            var classDiv = document.createElement('div');
-            classDiv.className = "listClass";
+        let button = document.createElement("button");
+        let text = document.createTextNode("Click me to add");
+        button.setAttribute("id", "button2" );
+        button2.appendChild(button);
+        button.appendChild(text);
+       
+        document.body.appendChild(button);
+        button2.appendChild(button)
         
-            var createUl = document.createElement("ul");
-            createUl.setAttribute("id", "myUL");
-            
-            createClass.appendChild(classDiv);
-            classDiv.appendChild(createUl);
-        }
+      
 
-        toDoListSkeleton()
+        return button
+    }
+    let buttonListener = buttonToDoList()
 
-        // STEP 4. Create an event listener that adds an li to the ul when the add button is clicked
-        function itemsToDolist() { 
-            
-            var createli = document.createElement("li");
-            var inputValue = document.getElementById("todoInput").value;
-            let text = document.createTextNode(inputValue)
-            createli.appendChild(text);
-            let createUl = document.getElementById("myUL")
-            createUl.appendChild(createli);
+
+    // STEP 3. Create an empty ul
+    function skeletonToDoList() {
+         // STEP 1. Create the input bar
+    
+      
+        let createClass = document.getElementById('app'); 
+        let classDiv = document.createElement('div');
+        classDiv.className = "listClass";
+        let inputBar = document.createElement("input");
+        inputBar.setAttribute("type", "text");
+        inputBar.setAttribute("placeholder", "Enter to do here");
+        inputBar.setAttribute("id", "todoInput" );
+    
+        let createUl = document.createElement("ul");
+        createUl.setAttribute("id", "myUL");
         
-        }
-        llk.addEventListener("click", itemsToDolist)
+        createClass.appendChild(classDiv);
+        classDiv.appendChild(inputBar)
+        classDiv.appendChild(createUl);
+     
+       
+
+    }
+    skeletonToDoList()
+    // STEP 4. Create an event listener that adds an li to the ul when the add button is clicked
+    function itemsToDolist() { 
+        
+        let createli = document.createElement("li");
+        var inputValue = document.getElementById("todoInput");
+        let text = document.createTextNode(inputValue.value)
+        createli.appendChild(text);
+        let createUl = document.getElementById("myUL")
+        createUl.appendChild(createli);
+        inputValue.value= "" ;
+    
+    }
+    buttonListener.addEventListener("click", itemsToDolist)
 
          
     
