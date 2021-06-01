@@ -1,0 +1,395 @@
+$font-Headers-Footer-button: 'Lexend Giga', sans-serif;
+$font-Body: 'Raleway', sans-serif;
+$font-color: #000;
+$background-color:#f6f6f6;
+$font-size-buttons: 15px;
+$font-size-header1: 70px;
+$font-size-header2: 27px;
+$text-transform: uppercase;
+
+
+
+body{
+    background-color: #0b3604;
+}
+
+#app {
+    display: grid;
+    grid-auto-rows: minmax(150px, auto);
+    text-transform: $text-transform ;
+    font-family: $font-Headers-Footer-button ;
+    background: $background-color;
+    justify-content: center;
+    border: solid rgb(255, 238, 0);
+    height:200vh;
+    //color: rgb(0, 0, 0);
+    // grid-gap: -200px;
+    // font-size: 60px;
+}
+
+.headline{
+    font-size: $font-size-header1;
+}
+
+label{
+    display:block;
+    font-size: $font-size-header2;
+}
+
+.myTripTitle{
+    margin-top: -250px;
+    height: 30px;
+    border: solid yellowgreen;
+}
+
+footer {
+    font-size: $font-size-header2;
+}
+
+
+
+.cityDestination{
+    margin-top: -50px;
+}
+
+.departureDate{
+    margin-top: -100px;
+}
+
+#generate{
+    margin-top: -150px;
+}
+        
+.todoLabel{
+    margin-top: 0px;
+    border: solid #22b2da;
+}
+
+.entry{
+    background: $background-color;
+    height: 300px;
+    margin-top: -437px;
+    font-size: $font-size-header2;
+    font-family: $font-Body;
+    text-transform:$text-transform;
+    border: solid rgb(32, 206, 162);
+    // height:fit-content; 
+}
+
+.listClass{
+    margin-top: -300px;
+    text-transform:$text-transform;
+    height:fit-content; 
+    border: solid rgb(219, 27, 27);
+}
+    
+    
+    
+    input{
+        display:block;
+        height: 60px;
+        width: 320px;
+        background: $background-color;
+        font-size: 17px;
+        font-family: $font-Body;
+        border: none;
+        text-transform:$text-transform;
+        // color: #000000;
+    }
+    
+    #todoInput{
+        margin-top: 5px;
+        border: solid blueviolet ;
+    }
+    
+    #myUL{
+        margin-top: 60px;
+        font-size: 17px;
+        font-family: $font-Body;
+        text-transform:$text-transform;
+        border: solid rgb(223, 226, 43); 
+    }
+
+    // #myUL .li
+    
+    
+    button{
+        width: fit-content;
+        height: 30px;
+        background: $background-color;
+        color: black;
+        font-size: 15px;
+        font-family: $font-Headers-Footer-button;
+        text-transform:$text-transform;
+        box-shadow: 2px 4px 5px #444;
+        cursor: pointer;
+    }
+    #button1{
+        margin-top: -150px;
+        border: solid orange;
+    }
+
+    
+    #button2{
+        margin-top: 40px;
+        border: solid rgb(255, 0, 191);
+          // height: 30px;
+        // color: black;
+        // width: fit-content;
+        // font-size: 15px;
+        // background: $background-color;
+        // cursor: pointer;
+        // font-family: 'Lexend Giga', sans-serif;
+    }
+
+    
+    
+    footer{
+        font-family: $font-Headers-Footer-button;
+        font-size: 13px;
+        color: white;
+        text-transform:$text-transform;
+        /* margin-top: 110px; */
+        text-align: center;
+        margin: 0;
+    }
+    
+    textarea{    
+        color: #000000;
+        font-size: 20px;
+        font-family: $font-Body;
+        background:#22b2da;
+    }
+    
+     // h1{
+    //     font-size: 36px;
+    // }
+    
+    
+    
+    // /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+    
+    // /* Reset style for HTML element on active to have no border*/
+    // input:focus,
+    // select:focus,
+    // textarea:focus,
+    // button:focus {
+    //     outline: none;
+    // }
+    
+    
+    // /* Style for Placeholder Text*/
+    // ::placeholder { /* Firefox, Chrome, Opera */ 
+    //     color: #000000; 
+    //     font-family: 'Raleway', sans-serif;
+    
+    // } 
+      
+    // :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    //     color: #f0d43a; 
+    //     font-family: 'Raleway', sans-serif;
+    
+    // } 
+      
+    // ::-ms-input-placeholder { /* Microsoft Edge */ 
+    //     color: #f0d43a; 
+    //     font-family: 'Raleway', sans-serif;
+    
+    // } 
+
+
+
+
+
+
+
+
+
+
+// // $font-Size-Header1: 
+// // $font-Size-Header2:
+// // $font-Size-Footer:
+// // $font-Size-Weather:
+// // $font-Size-List:
+// // $font-Size-Buttons:
+
+
+// body {
+//     background-color: #0e5e00;
+//     font-family: ;
+// }
+
+// #app{
+//     display: grid;
+//     grid-auto-rows: minmax(150px, auto);
+//     height:200vh;
+//     background: rgb(255, 255, 255);
+//     color: rgb(0, 0, 0);
+//     justify-content: center;
+//     /* grid-gap: -200px; */
+//     font-size: 60px;
+//     text-transform:uppercase;
+//     font-family: 'Lexend Giga', sans-serif;
+// }
+
+// .cityDestination{
+//     margin-top: -50px;
+// }
+
+// .departureDate{
+//     margin-top: -100px;
+// }
+
+// #generate{
+//     margin-top: -150px;
+// }
+
+
+
+// .todoLabel{
+//     margin-top: 0px;
+//     border: solid #22b2da;
+// }
+
+
+// .myTripTitle{
+//     margin-top: -250px;
+//     height: 30px;
+//     border: solid yellowgreen;
+// }
+
+// .entry{
+//     background: #fdfdfd;
+//     /* height:fit-content;  */
+//     height: 300px;
+//     margin-top: -437px;
+//     border: solid rgb(32, 206, 162);
+//     font-size: 25px;
+//     font-family: 'Raleway', sans-serif;
+//     text-transform:capitalize
+
+// }
+
+// .listClass{
+//     border: solid rgb(219, 27, 27);
+//     margin-top: -300px;
+//     text-transform:uppercase;
+//     height:fit-content; 
+   
+// }
+
+
+
+// /*  Basic Styling To Override Default For Basic HTML Elements */
+// label{
+//     display:block;
+//     font-size: 27px;
+// }
+
+// input{
+//     display:block;
+//     height: 60px;
+//     width: 320px;
+//     background:#fdfdfd;
+//     color: #000000;
+//     font-size: 17px;
+//     font-family: 'Raleway', sans-serif;
+//     border: none;
+   
+// }
+
+// #todoInput{
+//     border: solid blueviolet ;
+//     margin-top: 5px;
+// }
+
+// #myUL{
+//     border: solid rgb(223, 226, 43); 
+//     margin-top: 60px;
+//     font-size: 17px;
+//     font-family: 'Raleway', sans-serif;
+//     text-transform:uppercase;
+// }
+
+
+// button{
+//     width: fit-content;
+//     height: 30px;
+//     background: #f6f6f6;
+//     color: black;
+//     font-size: 15px;
+//     font-family: 'Lexend Giga', sans-serif;
+//     border: solid orange;
+//     text-transform:uppercase;
+//     box-shadow: 2px 4px 5px #444;
+//     cursor: pointer;
+// }
+
+// #button2{
+//     width: fit-content;
+//     margin-top: 40px;
+//     height: 30px;
+//     background: #f6f6f6;
+//     color: black;
+//     font-size: 15px;
+//     font-family: 'Lexend Giga', sans-serif;
+//     border: solid rgb(255, 0, 191);
+//     text-transform:uppercase;
+//     box-shadow: 2px 4px 5px #444;
+//     cursor: pointer;
+// }
+
+
+// h1{
+//     font-size: 36px;
+// }
+
+// footer{
+//     font-family: 'Lexend Giga', sans-serif;
+//     font-size: 13px;
+//     color: white;
+//     text-transform:uppercase;
+//     /* margin-top: 110px; */
+//     text-align: center;
+//     margin: 0;
+// }
+
+// textarea{    
+//     background:#22b2da;
+//     color: #000000;
+//     font-size: 20px;
+//     font-family: 'Raleway', sans-serif;
+// }
+
+
+
+
+// /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+// /* Reset style for HTML element on active to have no border*/
+// input:focus,
+// select:focus,
+// textarea:focus,
+// button:focus {
+//     outline: none;
+// }
+
+
+// /* Style for Placeholder Text*/
+// ::placeholder { /* Firefox, Chrome, Opera */ 
+//     color: #000000; 
+//     font-family: 'Raleway', sans-serif;
+
+// } 
+  
+// :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+//     color: #f0d43a; 
+//     font-family: 'Raleway', sans-serif;
+
+// } 
+  
+// ::-ms-input-placeholder { /* Microsoft Edge */ 
+//     color: #f0d43a; 
+//     font-family: 'Raleway', sans-serif;
+
+// } 

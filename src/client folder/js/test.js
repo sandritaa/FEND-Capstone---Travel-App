@@ -24,7 +24,7 @@ async function postToServer(cityDest, dateDest, weatherDest, pictureDest) {
         destinationPic: pictureDest
     }
 
-    await fetch('http://localhost:3000/postroute136', {
+    await fetch('http://localhost:3000/postRoute136', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {'Content-Type': 'application/json'},
@@ -113,22 +113,17 @@ async function pictureApi(urlPina,keyPina,cityPina,typePina) {
 /*UpdateUI Function*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function updateUI(projectData, daysDiff){
+function updateUI(projectData){
     const dateElement = document.getElementById('date');
     const tempElement = document.getElementById('temp');
     const locationElement = document.getElementById('location');
     const imageElement = document.getElementById('image');
-    const countdown = document.getElementById('count'); 
 
     dateElement.innerHTML = `<span class="entry-item">Date: </span>${projectData.date}`;
     tempElement.innerHTML = `<span class="entry-item">Temperature: </span>${projectData.weather}`;
     locationElement.innerHTML = `<span class="entry-item">City: </span>${projectData.city}`;
     imageElement.innerHTML = `<span class="entry-item">Destination Image: </span>${projectData.image}`;
-     
-
-    countdown.innerText = 'Countdown to trip: ' + daysDiff;
 }
-  
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,58 +156,21 @@ async function weatherUpdate() {
         let timeDiff = htmlDate.getTime() - day.getTime();
         let daysDiff = Math.round(timeDiff / oneDay);
 
-
-
-        let dest;
-        if (city === ""){
-            alert("please enter a city name.")
-        }
-
         let tempAtArrival;
-        if (daysDiff < 0) {
-            alert('past day- re-enter')
-        }
-        else if (departureDate === ''){
-            alert('enter date')
-        }
-        else if (daysDiff >=  weatherForecast.data.length +1) {
-            tempAtArrival = 'idk'
-             ////////////////////////////////////////////////////////
-            /*GOING LIVE */
-            ///////////////////////////////////////////////////////     
-            
-            postToServer(city, departureDate, tempAtArrival, cityPhoto);
-            let projectData = getFromServer();
-            await updateUI(projectData, daysDiff)
-        } 
-        else {
+        if (daysDiff < weatherForecast.data.length){
             tempAtArrival = weatherForecast.data[daysDiff].temp;
-             ////////////////////////////////////////////////////////
-            /*GOING LIVE */
-            ///////////////////////////////////////////////////////     
-
-            postToServer(city, departureDate, tempAtArrival, cityPhoto);
-            let projectData = getFromServer();
-            await updateUI(projectData, daysDiff)
+        } else {
+            tempAtArrival = "please input departure date that is less than 16 days away"
         }
 
 
-        // if daysDiff < 0
-        //     display: This is in the past
-        // elseif daysDiff == ""
-        //     display: Input a day
-        // elseif daysDiff > 16
-        //     display: Cannot give weather feadback
-        //     tempAtArrival = "I don't know this"
-        // else
-        //     run instructino //             tempAtArrival = weatherForecast.data[daysDiff].temp;
 
-
-
-
-
-
-
+        /////////////////////////////////////////////////////
+        /*COUNTDOWN */
+        ///////////////////////////////////////////////////////   
+        let countdown = document.createElement('div')
+        countdown.innertext = daysDiff;
+        document.body.appendChild(countdown);
 
         ////////////////////////////////////////////////////////
         /*IMAGE PERAMETERS */
@@ -222,98 +180,179 @@ async function weatherUpdate() {
             // myImage.src = cityPhoto ;
             // document.body.appendChild(myImage);
 
+        ////////////////////////////////////////////////////////
+        /*GOING LIVE */
+        ///////////////////////////////////////////////////////     
+
+        postToServer(city, departureDate, tempAtArrival, cityPhoto);
+        // // city, departureDate, weatherForecast, cityPhoto
           
+        // // Get data back from server to front end
+        let projectData = getFromServer();
+        // console.log(departureDate)
+        // console.log(projectData.date)
+        // // Update UI
+        await updateUI(projectData)   
         
     };
 
    
-
-
-
+    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*Creating Event Listener*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     
-    const generateListener = document.getElementById('button1');// Defining variable that will be used in event listener
+    const generateListener = document.getElementById('generate');// Defining variable that will be used in event listener
 
-    generateListener.addEventListener("click", weatherUpdate);
+    generateListener.addEventListener("click", weatherUpdate)
+
+
+
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*TO DO LIST*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
-function buttonToDoList() {
+function todoList() {
 
-    let button2 = document.getElementById('app'); 
-    let button = document.createElement("button");
-    let text = document.createTextNode("click to add");
-    button.setAttribute("id", "button2" );
-    button2.appendChild(button);
-    button.appendChild(text);
-   
-    document.body.appendChild(button);
-    button2.appendChild(button)
-  
-    return button
+//title    
+
+let labelClass = document.getElementById('app'); 
+let  newlabel = document.createElement('label');
+newlabel.setAttribute('class', 'todoLabel')
+newlabel.setAttribute("for",'label');
+newlabel.innerHTML = "Trip To Do List:";
+
+
+
+//skeleton
+
+let createClass = document.getElementById('app'); 
+let classDiv = document.createElement('div');
+classDiv.className = "listClass";
+let inputBar = document.createElement("input");
+inputBar.setAttribute("type", "text");
+inputBar.setAttribute("placeholder", "Enter to do here");
+inputBar.setAttribute("id", "todoInput" );
+
+
+
+//button
+let button2 = document.getElementById('app'); 
+
+
+let button = document.createElement("button");
+let text = document.createTextNode("Click me to add");
+button.setAttribute("id", "button2" );
+
+
+
+
+// return button
+
+
+
+let createUl = document.createElement("ul");
+createUl.setAttribute("id", "myUL");
+
+////////////////////////////////////
+
+
+labelClass.appendChild(newlabel);
+
+labelClass.appendChild(inputBar)
+
+createClass.appendChild(classDiv);
+classDiv.appendChild(inputBar);
+
+
+button2.appendChild(button);
+button.appendChild(text);
+
+
+labelClass.appendChild(text)
+
+
+button.appendChild(inputBar);
+input.appendChild(createUl);
+
+return todoList
+
 }
 
-let buttonListener = buttonToDoList()
+let buttonListener = todoList()
 
-function skeletonToDoList() {
 
-    let labelClass = document.getElementById('app'); 
-    let  newlabel = document.createElement('label');
-    newlabel.setAttribute('class', 'todoLabel')
-    newlabel.setAttribute("for",'label');
-    newlabel.innerHTML = "to-do list:";
+// let  label = document.createElement('label');
+       
+ 
+
+    // STEP 2. Create the add button
+    // function buttonToDoList() {
+    //     let button2 = document.getElementById('app'); 
+
+
+    //     let button = document.createElement("button");
+    //     let text = document.createTextNode("Click me to add");
+    //     button.setAttribute("id", "button2" );
+    //     button2.appendChild(button);
+    //     button.appendChild(text);
+       
+    //     document.body.appendChild(button);
+    //     button2.appendChild(button)
+        
+      
+
+    //     return button
+    // }
+    // let buttonListener = buttonToDoList()
+
+
+    // STEP 3. Create an empty ul
+    // function skeletonToDoList() {
+    //      // STEP 1. Create the input bar
     
-    labelClass.appendChild(newlabel);
+      
+    //     let createClass = document.getElementById('app'); 
+    //     let classDiv = document.createElement('div');
+    //     classDiv.className = "listClass";
+    //     let inputBar = document.createElement("input");
+    //     inputBar.setAttribute("type", "text");
+    //     inputBar.setAttribute("placeholder", "Enter to do here");
+    //     inputBar.setAttribute("id", "todoInput" );
+    
+    //     let createUl = document.createElement("ul");
+    //     createUl.setAttribute("id", "myUL");
+        
+    //     createClass.appendChild(classDiv);
+    //     classDiv.appendChild(inputBar)
+    //     classDiv.appendChild(createUl);
      
-    let createClass = document.getElementById('app'); 
-    let classDiv = document.createElement('div');
-    classDiv.className = "listClass";
-    let inputBar = document.createElement("input");
-    inputBar.setAttribute("type", "text");
-    inputBar.setAttribute("placeholder", "enter to do here");
-    inputBar.setAttribute("id", "todoInput" );
+       
 
-    let createUl = document.createElement("ul");
-    createUl.setAttribute("id", "myUL");
-    classDiv.appendChild(newlabel);
-    createClass.appendChild(classDiv);
-    classDiv.appendChild(inputBar);
-    classDiv.appendChild(button2);
-    classDiv.appendChild(createUl);
-}
-
-skeletonToDoList()
-
-function itemsToDolist() { 
-    
-    let createli = document.createElement("li");
-    var inputValue = document.getElementById("todoInput");
-    if(inputValue.value === ''){
-        alert("redo") 
-    } else {
+    // }
+    // skeletonToDoList()
+    // STEP 4. Create an event listener that adds an li to the ul when the add button is clicked
+    function itemsToDolist() { 
+        
+        let createli = document.createElement("li");
+        var inputValue = document.getElementById("todoInput");
         let text = document.createTextNode(inputValue.value)
         createli.appendChild(text);
         let createUl = document.getElementById("myUL")
         createUl.appendChild(createli);
         inputValue.value= "" ;
+    
     }
-
-    // const startDate = document.getElementById('start').value;
-	// const endDate = document.getElementById('end').value;
-	// const today = new Date();
-	// const tripStart = new Date(startDate);
-	// const tripEnd = new Date(endDate);
-
-
-   
     
 
-}
-
-buttonListener.addEventListener("click", itemsToDolist)
+    buttonListener.addEventListener("click", itemsToDolist)
+         
+    
+    

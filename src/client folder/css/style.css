@@ -7,35 +7,48 @@ body{
 #app{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
-    height:300vh;
+    height:200vh;
     background: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     justify-content: center;
-    grid-gap: -200px;
+    /* grid-gap: -200px; */
     font-size: 60px;
     text-transform:uppercase;
     font-family: 'Lexend Giga', sans-serif;
 }
 
+.cityDestination{
+    margin-top: -50px;
+}
+
+.departureDate{
+    margin-top: -100px;
+}
+
+#generate{
+    margin-top: -150px;
+}
+
+
+
 .todoLabel{
-    margin-top: 110px;
+    margin-top: 0px;
     border: solid #22b2da;
 }
 
-/* 
-.holder{
 
-} */
 .myTripTitle{
-    margin-top: -100px;
+    margin-top: -250px;
+    height: 30px;
     border: solid yellowgreen;
 }
 
 .entry{
     background: #fdfdfd;
-    height: 400px;
-    margin-top: -170px;
-    border: solid purple;
+    /* height:fit-content;  */
+    height: 300px;
+    margin-top: -437px;
+    border: solid rgb(32, 206, 162);
     font-size: 25px;
     font-family: 'Raleway', sans-serif;
     text-transform:capitalize
@@ -44,8 +57,10 @@ body{
 
 .listClass{
     border: solid rgb(219, 27, 27);
-    margin-top: -200px;
+    margin-top: -300px;
     text-transform:uppercase;
+    height:fit-content; 
+   
 }
 
 
@@ -70,10 +85,12 @@ input{
 
 #todoInput{
     border: solid blueviolet ;
+    margin-top: 5px;
 }
 
 #myUL{
     border: solid rgb(223, 226, 43); 
+    margin-top: 60px;
     font-size: 17px;
     font-family: 'Raleway', sans-serif;
     text-transform:uppercase;
@@ -93,6 +110,20 @@ button{
     cursor: pointer;
 }
 
+#button2{
+    width: fit-content;
+    margin-top: 40px;
+    height: 30px;
+    background: #f6f6f6;
+    color: black;
+    font-size: 15px;
+    font-family: 'Lexend Giga', sans-serif;
+    border: solid rgb(255, 0, 191);
+    text-transform:uppercase;
+    box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
+}
+
 
 h1{
     font-size: 36px;
@@ -100,14 +131,16 @@ h1{
 
 footer{
     font-family: 'Lexend Giga', sans-serif;
-    font-size: 10px;
+    font-size: 13px;
+    color: white;
     text-transform:uppercase;
     /* margin-top: 110px; */
     text-align: center;
     margin: 0;
 }
 
-textarea{    background:#22b2da;
+textarea{    
+    background:#22b2da;
     color: #000000;
     font-size: 20px;
     font-family: 'Raleway', sans-serif;

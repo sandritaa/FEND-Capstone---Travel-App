@@ -41,6 +41,7 @@ app.post('/postroute136', function (req, res) {
     myTripInfo.date = req.body.arrivalDate
     myTripInfo.pic = req.body.destinationPic
     myTripInfo.weather = req.body.destinationWeather
+
     console.log(myTripInfo.city)
 
 });

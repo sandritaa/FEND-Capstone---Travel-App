@@ -1,0 +1,132 @@
+body {
+  background-color: #0b3604;
+}
+
+#app {
+  display: grid;
+  grid-auto-rows: minmax(150px, auto);
+  text-transform: uppercase;
+  font-family: "Lexend Giga", sans-serif;
+  background: #f6f6f6;
+  justify-content: center;
+  border: solid #ffee00;
+  height: 200vh;
+}
+
+.headline {
+  font-size: 70px;
+}
+
+label {
+  display: block;
+  font-size: 27px;
+}
+
+.myTripTitle {
+  margin-top: -250px;
+  height: 30px;
+  border: solid yellowgreen;
+}
+
+footer {
+  font-size: 27px;
+}
+
+.cityDestination {
+  margin-top: -50px;
+}
+
+.departureDate {
+  margin-top: -100px;
+}
+
+#generate {
+  margin-top: -150px;
+}
+
+.todoLabel {
+  margin-top: 0px;
+  border: solid #22b2da;
+}
+
+.entry {
+  background: #f6f6f6;
+  height: 300px;
+  margin-top: -437px;
+  font-size: 27px;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  border: solid #20cea2;
+}
+
+.listClass {
+  margin-top: -300px;
+  text-transform: uppercase;
+  height: fit-content;
+  border: solid #db1b1b;
+}
+
+input {
+  display: block;
+  height: 60px;
+  width: 320px;
+  background: #f6f6f6;
+  font-size: 17px;
+  font-family: "Raleway", sans-serif;
+  border: none;
+  text-transform: uppercase;
+}
+
+#todoInput {
+  margin-top: 5px;
+  border: solid blueviolet;
+}
+
+#myUL {
+  margin-top: 60px;
+  font-size: 17px;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  border: solid #dfe22b;
+}
+
+button {
+  width: fit-content;
+  height: 30px;
+  background: #f6f6f6;
+  color: black;
+  font-size: 15px;
+  font-family: "Lexend Giga", sans-serif;
+  text-transform: uppercase;
+  box-shadow: 2px 4px 5px #444;
+  cursor: pointer;
+}
+
+#button1 {
+  margin-top: -150px;
+  border: solid orange;
+}
+
+#button2 {
+  margin-top: 40px;
+  border: solid #ff00bf;
+}
+
+footer {
+  font-family: "Lexend Giga", sans-serif;
+  font-size: 13px;
+  color: white;
+  text-transform: uppercase;
+  /* margin-top: 110px; */
+  text-align: center;
+  margin: 0;
+}
+
+textarea {
+  color: #000000;
+  font-size: 20px;
+  font-family: "Raleway", sans-serif;
+  background: #22b2da;
+}
+
+/*# sourceMappingURL=test.css.map */
