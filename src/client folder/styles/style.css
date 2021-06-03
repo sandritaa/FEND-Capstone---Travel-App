@@ -12,9 +12,10 @@ body {
   grid-auto-rows: minmax(150px, auto);
   font-family: "Lexend Giga", sans-serif;
   text-transform: uppercase;
-  background: #ffffff;
+  background: #f6f6f6;
   justify-content: center;
   height: 200vh;
+  border: solid #ffee00;
 }
 
 .headline {
@@ -23,7 +24,11 @@ body {
 
 label {
   display: block;
-  font-size: 23px;
+  font-size: 20px;
+}
+
+footer {
+  font-size: 20px;
 }
 
 .cityDestination {
@@ -44,6 +49,7 @@ label {
 }
 
 .listClass {
+  margin-top: -300px;
   height: fit-content;
   text-transform: uppercase;
   border: solid #db1b1b;
@@ -53,8 +59,8 @@ input {
   display: block;
   height: 60px;
   width: 320px;
-  background: #eeeeee;
-  font-size: 18px;
+  background: #f6f6f6;
+  font-size: 20px;
   font-family: "Raleway", sans-serif;
   border: none;
   text-transform: uppercase;
@@ -67,7 +73,7 @@ input {
 
 #myUL {
   margin-top: 60px;
-  font-size: 18px;
+  font-size: 20px;
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   border: solid #dfe22b;
@@ -76,9 +82,9 @@ input {
 button {
   width: fit-content;
   height: fit-content;
-  background: #ffffff;
+  background: #f6f6f6;
   color: black;
-  font-size: 15px;
+  font-size: 25px;
   font-family: "Lexend Giga", sans-serif;
   text-transform: uppercase;
   box-shadow: 2px 4px 5px #444;
@@ -86,7 +92,7 @@ button {
 }
 
 #button1 {
-  margin-top: -180px;
+  margin-top: -240px;
   border: solid orange;
 }
 
@@ -97,7 +103,7 @@ button {
 
 footer {
   font-family: "Lexend Giga", sans-serif;
-  font-size: 18px;
+  font-size: 13px;
   color: white;
   text-transform: uppercase;
   /* margin-top: 110px; */
@@ -107,35 +113,44 @@ footer {
 
 textarea {
   color: #000000;
-  font-size: 18px;
+  font-size: 20px;
   font-family: "Raleway", sans-serif;
   background: #22b2da;
 }
 
 .myTripTitle {
-  display: block;
-  margin-top: -300px;
+  margin-top: -167px;
   height: fit-content;
-  font-size: 18px;
+  border: solid yellowgreen;
+  background: #f6f6f6;
+  height: 300px;
+  margin-top: -437px;
+  font-size: 20px;
   text-transform: uppercase;
   border: solid #20cea2;
 }
+.myTripTitle .label {
+  font-family: "Lexend Giga", sans-serif;
+  font-size: 20px;
+}
 .myTripTitle .entry {
   font-family: "Raleway", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   border: solid #20cea2;
 }
-.myTripTitle .entry-item {
-  font-family: "Lexend Giga", sans-serif;
-}
-.myTripTitle #itineraryTitle {
-  font-family: "Lexend Giga", sans-serif;
-  font-size: 23px;
-  margin-bottom: 25px;
-}
-.myTripTitle #count {
-  font-family: "Lexend Giga", sans-serif;
-  font-size: 30px;
+
+@media only screen and (min-width: 35em) {
+  label {
+    font-size: 45px;
+  }
+
+  input {
+    font-size: 35px;
+  }
+
+  #myUL {
+    font-size: 35px;
+  }
 }
 
-/*# sourceMappingURL=test.css.map */
+/*# sourceMappingURL=style.css.map */

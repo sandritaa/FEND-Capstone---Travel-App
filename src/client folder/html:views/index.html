@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com"> 
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga&family=Raleway:wght@100&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" href="/src/client folder/styles/style.css"> -->
-<link rel="stylesheet" href="/src/client folder/css/test.css">
+<link rel="stylesheet" href="/src/client folder/css/test.css?v=2">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
   </div>
 
   <div class ="holder departureDate">
-    <label for="departureDate">arrival date</label>
+    <label for="departureDate">departure date</label>
     <input class= "myInput" type="date" id="departureDate" value="">
     <!-- <input class= "myInput" id="departureDate" placeholder="Enter date here - mm/dd/yy"></input> -->
   </div>
@@ -31,13 +31,14 @@
   <button id="button1" type = "submit">click to generate</button>
  
   <div class = myTripTitle>
-  <label for="title">my trip</label>
-</div>
+  <!-- <label for="title">my trip</label> -->
+
   <div class ="holder entry">
     
     <div class = "return"></div>
 
    <div id = "entryHolder">
+   <div id = "itineraryTitle"></div>  
    <div id = "date"></div> 
    <div id = "temp"></div>
    <div id = "location"></div> 
@@ -46,8 +47,9 @@
  
 
   </div>
+</div>
   </div>
-  
+
 
   
 </div>

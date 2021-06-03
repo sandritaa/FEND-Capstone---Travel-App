@@ -8,6 +8,7 @@
 
 async function getFromServer() {
     const backEnd = await fetch('http://localhost:3000/getroute128');
+    debugger;
     const data = await backEnd.json();
     return data;
 }
@@ -114,19 +115,22 @@ async function pictureApi(urlPina,keyPina,cityPina,typePina) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updateUI(projectData, daysDiff){
+    const titleElement = document.getElementById('itineraryTitle');
     const dateElement = document.getElementById('date');
     const tempElement = document.getElementById('temp');
     const locationElement = document.getElementById('location');
     const imageElement = document.getElementById('image');
     const countdown = document.getElementById('count'); 
+    debugger;
 
+    titleElement.innerHTML = `<span class="entry-item">itinerary</span>`;
     dateElement.innerHTML = `<span class="entry-item">Date: </span>${projectData.date}`;
-    tempElement.innerHTML = `<span class="entry-item">Temperature: </span>${projectData.weather}`;
+    tempElement.innerHTML = `<span class="entry-item">Temperature: </span>${projectData.weather} °C`;
     locationElement.innerHTML = `<span class="entry-item">City: </span>${projectData.city}`;
-    imageElement.innerHTML = `<span class="entry-item">Destination Image: </span>${projectData.image}`;
+    imageElement.innerHTML = `<img src=${projectData.pic.hits[3].webformatURL}>`;
      
 
-    countdown.innerText = 'Countdown to trip: ' + daysDiff;
+    countdown.innerText = daysDiff + ' days to trip! ✈️';
 }
   
 
@@ -161,8 +165,6 @@ async function weatherUpdate() {
         let timeDiff = htmlDate.getTime() - day.getTime();
         let daysDiff = Math.round(timeDiff / oneDay);
 
-
-
         let dest;
         if (city === ""){
             alert("please enter a city name.")
@@ -180,7 +182,6 @@ async function weatherUpdate() {
              ////////////////////////////////////////////////////////
             /*GOING LIVE */
             ///////////////////////////////////////////////////////     
-            
             postToServer(city, departureDate, tempAtArrival, cityPhoto);
             let projectData = getFromServer();
             await updateUI(projectData, daysDiff)
@@ -192,39 +193,14 @@ async function weatherUpdate() {
             ///////////////////////////////////////////////////////     
 
             postToServer(city, departureDate, tempAtArrival, cityPhoto);
-            let projectData = getFromServer();
-            await updateUI(projectData, daysDiff)
+            let projectData = await getFromServer();
+            updateUI(projectData, daysDiff)
         }
 
-
-        // if daysDiff < 0
-        //     display: This is in the past
-        // elseif daysDiff == ""
-        //     display: Input a day
-        // elseif daysDiff > 16
-        //     display: Cannot give weather feadback
-        //     tempAtArrival = "I don't know this"
-        // else
-        //     run instructino //             tempAtArrival = weatherForecast.data[daysDiff].temp;
-
-
-
-
-
-
-
-
-        ////////////////////////////////////////////////////////
-        /*IMAGE PERAMETERS */
-        /////////////////////////////////////////////////////// 
-
-            // let myImage = new Image(100, 200);
-            // myImage.src = cityPhoto ;
-            // document.body.appendChild(myImage);
+        
 
           
-        
-    };
+};
 
    
 
@@ -235,9 +211,9 @@ async function weatherUpdate() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     
-    const generateListener = document.getElementById('button1');// Defining variable that will be used in event listener
+const generateListener = document.getElementById('button1');// Defining variable that will be used in event listener
 
-    generateListener.addEventListener("click", weatherUpdate);
+generateListener.addEventListener("click", weatherUpdate);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -253,8 +229,8 @@ function buttonToDoList() {
     button2.appendChild(button);
     button.appendChild(text);
    
-    document.body.appendChild(button);
-    button2.appendChild(button)
+    // document.body.appendChild(button);
+    // button2.appendChild(button)
   
     return button
 }
@@ -264,7 +240,7 @@ let buttonListener = buttonToDoList()
 function skeletonToDoList() {
 
     let labelClass = document.getElementById('app'); 
-    let  newlabel = document.createElement('label');
+    let newlabel = document.createElement('label');
     newlabel.setAttribute('class', 'todoLabel')
     newlabel.setAttribute("for",'label');
     newlabel.innerHTML = "to-do list:";
