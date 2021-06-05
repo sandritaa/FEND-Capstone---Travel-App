@@ -48,6 +48,7 @@ async function callServer() {
         }
 
         // If a date not in the past has been entered and a city has been entered, call the server
+        let projectData = {};
         if (cityEntered || correctDateEntered){
             // Everything is ok, post to server
             // First, assemble the userInput object
@@ -55,21 +56,24 @@ async function callServer() {
                 departureDate: departureDate,
                 destinationCity: destinationCity
             }
-
             // Post to server
-            let projectData = postToServer(userInput);
+            projectData = postToServer(userInput);
+            
+            // Add the daysDiff field to projectData
+            projectData.countdown = daysDiff;
+
         } else {
             // Something is missing, do not call the server and populate the projectData with the incorrect data
-            let projectData = {
+            projectData = {
                 city: 'Error in inputs',
                 date: 'Error in inputs',
                 weather: 'Error in inputs',
-                picture: '../error.jpeg'
+                picture: '../error.jpeg',
+                countdown: 'Error in inputs'
             }
         }
-
+        
         return projectData
 };
 
-// Export the event listener
-export { callServer }
+export { postToServer, callServer }

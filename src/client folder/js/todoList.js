@@ -10,9 +10,6 @@ function buttonToDoList() {
     button.setAttribute("id", "button2" );
     button2.appendChild(button);
     button.appendChild(text);
-   
-    // document.body.appendChild(button);
-    // button2.appendChild(button)
   
     return button
 }
