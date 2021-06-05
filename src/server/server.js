@@ -1,48 +1,123 @@
-// Setup empty JS object to act as endpoint for all routes
-myTripInfo = {}
+////////////////////////////////////////////////////////
+/* SET UP SERVER*/
+////////////////////////////////////////////////////////
 
-// Require Express to run server and routes
+// Add package for access environment variables. This is used to access the API KEY stored in .env
+const dotenv = require('dotenv');
+dotenv.config();
 
-// Import a function under the name express, cors and body parse which are all of the Node packages we have installed
-const express = require('express'); // the librarian - this is how we get access to the server and create it (its a framework or template for node) 
-const cors = require('cors'); //type of middleware - security 
-const bodyParser = require('body-parser');//type of middleware - translator
+// Use express for our server side app and body-parser as middleware
+const express = require('express')
+const bodyParser = require('body-parser')
+
+// Node-fetch enables us to use the fetch() function in NodeJS 
+const fetch = require('node-fetch');
 
 // Start up an instance of app
-const app = express(); //here we are creating the app. creating the app variable that will use the information from the express method and will work as instructions
+const app = express()
 
-/* Middleware*/
-//tellling our app to use body parser and cors for our apps middlewear. Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Cors allows the browser and server to communicate without any security interruptions
+const cors = require('cors');
 
-// Cors for cross origin allowance
+// Enable our app to use the middleware in the app
 app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.static('dist'))
 
-// Initialize the main project folder
-app.use(express.static('../src/client folder/js'));
-
-// Establish a connection to the server
-const port = 3000; 
-app.listen(port, function() { //here we listen out for the port name and display friendly message to use letting them know if our code is working
-  console.log(`Server running on port ${port}`) //message that will pop up if code work and we use a short cut to pull port inforamtion
-});
+// Enable connection between server and client
+const port = 3000;
+app.listen(port, function () {
+    console.log(`Server running on port: ${port}`)
+})
 
 
-// respond with projectData when a GET request is made to the japanfotos
-app.get('/getroute128', function (req, res){
-  res.send(myTripInfo)
-});
+////////////////////////////////////////////////////////
+/* API SETTINGS*/
+////////////////////////////////////////////////////////
 
-// Prepared server to receive data
-app.post('/postroute136', function (req, res) {
+// Set up API URLs and KEYs in objects
+const geonamesAPI = {
+  url: 'https://api.geonames.org/searchJSON?',
+  query: 'formatted=true&q=',
+  access: '&username=',
+  username: process.env.GEOMAP_API_USERNAME
+}
+const weatherbitAPI = {
+  url: 'https://api.weatherbit.io/v2.0/forecast/daily?',
+  querylat = '&lat=',
+  querylong = '&lon=',
+  access = '&key=',
+  key: process.env.WEATHERBIT_API_KEY
+}
+const pixabayAPI = {
+  url: 'https://pixabay.com/api/?',
+  query: '&q=',
+  type: '&image_type=photo',
+  access: 'key=',
+  key: process.env.PIXABAY_API_KEY
+}
 
-    myTripInfo.city = req.body.destinationCity
-    myTripInfo.date = req.body.arrivalDate
-    myTripInfo.pic = req.body.destinationPic
-    myTripInfo.weather = req.body.destinationWeather
+////////////////////////////////////////////////////////
+/* GET ROUTE */
+////////////////////////////////////////////////////////
 
-    console.log(myTripInfo.city)
+// GET Route - we use this route to send the html to the server
+app.get('/getRoute', function (req, res) {
+    res.sendFile('dist/index.html')
+})
 
-});
+////////////////////////////////////////////////////////
+/* POST ROUTE */
+////////////////////////////////////////////////////////
+
+// Initialize userInput variable
+let userInput = {};
+
+// Initialize projectData variable
+let projectData = {};
+
+// POST Route - we use this route to send data to and fro the server
+app.post('/postRoute', async function(req, res) {
+    // Save the user input from the client side locally
+    userInput.arrivalDate = req.body.arrivalDate;
+    userInput.destinationCity = req.body.destinationCity;
+
+    // Log in server incoming data
+    console.log('User arrival date: ' + userInput.arrivalDate);
+    console.log('User destination city: ' + userInput.destinationCity);
+
+    // Call the geonames APIs
+    let geonamesAddress = geonamesAPI.url + geonamesAPI.query + userInput.arrivalDate + geonamesAPI.access + geonamesAPI.username;
+    let destinationJSON = await fetch(geonamesAddress);
+    let destination = await destinationJSON.json();
+    let destinationCoords = {
+      lat: destination.geonames[0].lat,
+      lng: destination.geonames[0].lng
+    }
+
+    // Call the weatherbit API
+    let weatherbitAddress = weatherbitAPI.url + weatherbitAPI.querylat + destinationCoords.lat + weatherbitAPI.querylong + destinationCoords.lng + weatherbitAPI.access + weatherbitAPI.key;
+    let weatherJSON = await fetch(weatherbitAddress);
+    let weather = await weatherJSON.json();
+
+    // Call the pixabay API
+    let pixabayAddress = pixabayAPI.url + pixabayAPI.access + pixabayAPI.key + pixabayAPI.query + userInput.destinationCity + pixabayAPI.type
+    let pictureJSON = await fetch(pixabayAddress);
+    let picture = await pictureJSON.json();
+
+    // Pack API results in the projectData object so we can send it back to the client side
+    // The data and the city are already available on the client side but we send it back anyways so we can deal with one single object on the front end
+    projectData = {
+      city: userInput.destinationCity,
+      date: userInput.arrivalDate,
+      weather: weather,
+      picture: picture
+    }
+
+    // Now the result from the API to the post route so that the client side can fetch it
+    console.log('Sending data back to client');
+    res.send(projectData)
+    console.log('Data sent to client')
+})
 
