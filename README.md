@@ -5,6 +5,6 @@ This project contains a travel app that obtains a desired trip location & date f
 
 ## Web APIs Credentials Used
 
- Geonames API
- Weatherbit API
- Pixabay API
+ -Geonames API
+ -Weatherbit API
+ -Pixabay API
