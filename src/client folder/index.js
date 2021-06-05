@@ -1,7 +1,5 @@
 
 
-
-
 async function getFromServer() { //attribute names assigned in function
     const backEnd = await fetch('/getroute128'); 
     const data = await backEnd.json();
