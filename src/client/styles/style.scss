@@ -4,7 +4,7 @@ $font-Headers-Footer-button: 'Lexend Giga', sans-serif;
 $font-Body: 'Raleway', sans-serif;
 $font-color: #000;
 $background-color:#ffffff;
-$background-color-:rgb(238, 238, 238);
+$background-color-button: #c9c9c9;
 $font-size-buttons: 15px;
 $font-size-header1: 70px;
 $font-size-header2: 23px;
@@ -22,9 +22,7 @@ body{
     text-transform: $text-transform;
     background: $background-color;
     justify-content: center;
-    height:200vh;
-//     height: fit-content
-//     border: solid rgb(255, 238, 0);
+    height: auto;
 }
 
 .headline{
@@ -36,18 +34,12 @@ label{
     font-size: $font-size-header2;
 }
 
-
-
-// footer {
-//     font-size: $font-size-header2;
-// }
-
 .cityDestination{
-    margin-top: -50px;
+    margin-top: 20px;
 }
 
 .departureDate{
-    margin-top: -100px;
+    margin-top: 40px;
 }
 
 #generate{
@@ -56,17 +48,12 @@ label{
         
 .todoLabel{
     margin-top: 0px;
-    border: solid #22b2da;
 }
 
-
 .listClass{
-    // margin-top: -500;
     height:fit-content; 
     text-transform:$text-transform;
-    border: solid rgb(219, 27, 27);
-    // position: relative;
-    // top: -500px;
+    margin-top: 40px;
 }
       
 input{
@@ -78,12 +65,10 @@ input{
     font-family: $font-Body;
     border: none;
     text-transform:$text-transform;
-    // color: #000000;
 }
 
 #todoInput{
     margin-top: 5px;
-    border: solid blueviolet ;
 }
 
 #myUL{
@@ -91,7 +76,6 @@ input{
     font-size: $font-size-entries;
     font-family: $font-Body;
     text-transform:$text-transform;
-    border: solid rgb(223, 226, 43); 
 }
 
 button{
@@ -103,17 +87,24 @@ button{
     font-family: $font-Headers-Footer-button;
     text-transform:$text-transform;
     box-shadow: 2px 4px 5px #444;
+    transition-duration: 0.4s;
     cursor: pointer;
 }
 
 #button1{
-    margin-top: -180px;
-    border: solid orange;
+    margin-top: 10px;
+}
+
+#button1:hover {
+    background-color: $background-color-button;
 }
 
 #button2{
     margin-top: 40px;
-    border: solid rgb(255, 0, 191);
+}
+
+#button2:hover {
+    background-color: $background-color-button;
 }
 
 footer{
@@ -121,7 +112,6 @@ footer{
     font-size:$font-size-entries;
     color: white;
     text-transform:$text-transform;
-    /* margin-top: 110px; */
     text-align: center;
     margin: 0;
 }
@@ -130,39 +120,22 @@ textarea{
     color: #000000;
     font-size: $font-size-entries;
     font-family: $font-Body;
-    background:#22b2da;
 }
-
-
-
 
 .myTripTitle{
     display:block;
-    margin-top: -300px;
+    margin-top: 20px;
     height: fit-content;
     font-size: $font-size-entries;
     text-transform:$text-transform;
-    border: solid rgb(32, 206, 162);
-    // font-family: $font-Body;
-    // height: 300px;
-    // height: 20em ;
-    // border: solid yellowgreen;
+    border: solid thin rgb(0, 0, 0);
 
-  
     .entry{
         font-family: $font-Body;
         font-size: $font-size-entries;
-        border: solid rgb(32, 206, 162);
-         // background: rgb(238, 238, 238);
-        // height:fit-content; 
-        // background: $background-color;
-        // height: 300px;
-        // margin-top: -437px;
-        // text-transform:$text-transform;
+        color: rgb(0, 0, 0);
     }  
-
-
-
+    
     .entry-item{
         font-family: $font-Headers-Footer-button;
     }
@@ -173,63 +146,125 @@ textarea{
         margin-bottom: 25px;
     }
 
-
     #count{
         font-family: $font-Headers-Footer-button;
         font-size: 30px;
     }
 }
 
+ /*MEDIA IPAD*/
 
+@media (max-width: 1024px)
+{
+    .headline{
+        font-size: 60px;
+    }
 
+    label{
+        font-size: 25px;
+    }
 
+    button{
+        font-size: 17px;
+    }
 
+    .listClass #myUL{
+        font-size: 20px;
+    }
 
+    .cityDestination{ 
+        margin-top: 30px;
+    }
 
+    .departureDate{
+        margin-top: 40px;
+    }
 
+    #button1{
+        margin-top: 45px;
+    }
 
+    .myTripTitle{
+        margin-top: 47px;
+    }
+   
+    .listClass{
+        margin-top: 60px;
+    }
+    
+    #app{
+        margin-top: 10px;
+    }
 
+}
 
+// MEDIA IPHONE 8
 
+@media (max-width: 375px)
+{
 
+    .headline{
+        font-size: 30px;
+    }
 
+    label{
+        font-size: 15px;
+    }
 
+    button{
+        font-size: 15px;
+    }
 
+    .cityDestination{
+        margin-top: -70px;
+    }
+    
+    .departureDate{
+        margin-top: -90px;
+    }
+    
+    #button1{
+        margin-top: -130px;
+    }
 
-// .entry{
-    // background: $background-color;
-    // height: 300px;
-    // margin-top: -437px;
-    // font-family: $font-Body;
-    // font-size: $font-size-entries;
-    // text-transform:$text-transform;
-    // border: solid rgb(32, 206, 162);
-//     // height:fit-content; 
-// }
+    .myTripTitle{
+        margin-top: -200px;
+    }
 
+    .myTripTitle .entry{
+        font-size: 13px;
+    }
 
+    .myTripTitle .entry img{
+        width: 85%;
+        height: auto;
+    }
 
+    .myTripTitle #count{
+        font-size: 17px;
+    }
 
+    .myTripTitle #itineraryTitle{
+        font-size: 15px;
+    }
 
+    input{
+        font-size: 14px;
+    }
 
-// @media only screen and (min-width: 35em){
-//     label {
-//         font-size: 45px;
-//         // margin: 2em 4rem 1em;
-//     }
+    button{
+        font-size: 11px;
+    }
+    
+    .listClass{
+        margin-top: 0px;
+    }
 
-//     input{
-//         font-size: 35px;
-//     }
+    .listClass #myUL{
+        font-size: 15px;
+    }
 
-//     #myUL{
-//         font-size: 35px;
-//     }
-// }
-
-// @media only screen and (min-width: 35em){
-//     .landing__container {
-//         max-width: 50em;
-//         padding: 4em;
-//     }
-// }
+    body{
+        margin-top: 10px;
+    }
+}

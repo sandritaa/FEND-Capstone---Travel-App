@@ -35,9 +35,9 @@ app.listen(port, function () {
 /* GET ROUTE */
 ////////////////////////////////////////////////////////
 
-// GET Route - we use this route to send the html to the server
+// GET Route - we use this route to test the server
 app.get('/getRoute', function (req, res) {
-    res.sendFile('dist/index.html')
+    res.sendFile(process.env.PWD + '/dist/index.html')
 })
 
 ////////////////////////////////////////////////////////
@@ -143,4 +143,9 @@ app.post('/postRoute', async function(req, res) {
     console.log('Sending data back to client');
     res.send(projectData)
     console.log('Data sent to client')
+})
+
+// Endpoint for testing express server
+app.get('/endpointTest', async function(req, res){
+  res.json({message: 'Test endpoint successful'})
 })
