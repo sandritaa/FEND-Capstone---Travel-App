@@ -2,12 +2,14 @@ import { calculateDays } from "./calculateDays";
 
 // Post to server - pass userInput and return the data to send to the UI
 async function postToServer(userInput) {
-    let projectData = await fetch('https://localhost:3000/postRoute', {
+    let projectDataJSON = await fetch('http://localhost:3000/postRoute', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userInput)
     })
+    let projectData = await projectDataJSON.json();
+    console.log('Received response from server')
     return projectData
 }
 
@@ -49,7 +51,7 @@ async function callServer() {
 
         // If a date not in the past has been entered and a city has been entered, call the server
         let projectData = {};
-        if (cityEntered || correctDateEntered){
+        if (cityEntered && correctDateEntered){
             // Everything is ok, post to server
             // First, assemble the userInput object
             let userInput = {
@@ -57,8 +59,18 @@ async function callServer() {
                 destinationCity: destinationCity
             }
             // Post to server
-            projectData = postToServer(userInput);
-            
+            projectData = await postToServer(userInput);
+
+            // Check if the forecast is too far in advance
+            if (daysDiff > projectData.weather.data.length) {
+                projectData.forecast = 'Forecast only available up to ' + projectData.weather.data.length + ' days in advance'
+            } else {
+                projectData.forecast = projectData.weather.data[daysDiff].temp + ' °C';
+            }
+
+            // Select the picture
+            projectData.photo = projectData.picture.hits[0].webformatURL
+
             // Add the daysDiff field to projectData
             projectData.countdown = daysDiff;
 
@@ -67,8 +79,8 @@ async function callServer() {
             projectData = {
                 city: 'Error in inputs',
                 date: 'Error in inputs',
-                weather: 'Error in inputs',
-                picture: '../error.jpeg',
+                forecast: 'Error in inputs',
+                photo: '../media/error.png',
                 countdown: 'Error in inputs'
             }
         }

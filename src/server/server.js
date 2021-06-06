@@ -31,33 +31,6 @@ app.listen(port, function () {
     console.log(`Server running on port: ${port}`)
 })
 
-
-////////////////////////////////////////////////////////
-/* API SETTINGS*/
-////////////////////////////////////////////////////////
-
-// Set up API URLs and KEYs in objects
-const geonamesAPI = {
-  url: 'https://api.geonames.org/searchJSON?',
-  query: 'formatted=true&q=',
-  access: '&username=',
-  username: process.env.GEOMAP_API_USERNAME
-}
-const weatherbitAPI = {
-  url: 'https://api.weatherbit.io/v2.0/forecast/daily?',
-  querylat = '&lat=',
-  querylong = '&lon=',
-  access = '&key=',
-  key: process.env.WEATHERBIT_API_KEY
-}
-const pixabayAPI = {
-  url: 'https://pixabay.com/api/?',
-  query: '&q=',
-  type: '&image_type=photo',
-  access: 'key=',
-  key: process.env.PIXABAY_API_KEY
-}
-
 ////////////////////////////////////////////////////////
 /* GET ROUTE */
 ////////////////////////////////////////////////////////
@@ -66,6 +39,67 @@ const pixabayAPI = {
 app.get('/getRoute', function (req, res) {
     res.sendFile('dist/index.html')
 })
+
+////////////////////////////////////////////////////////
+/* API SETTING DEFINITIONS */
+////////////////////////////////////////////////////////
+
+// Set up API URLs and KEYs in objects
+const geonamesAPI = {
+  url: 'http://api.geonames.org/searchJSON?',
+  query: 'formatted=true&q=',
+  access: '&username=',
+  username: process.env.GEOMAP_API_USERNAME
+}
+const weatherbitAPI = {
+  url: 'http://api.weatherbit.io/v2.0/forecast/daily?',
+  querylat: '&lat=',
+  querylong: '&lon=',
+  access: '&key=',
+  key: process.env.WEATHERBIT_API_KEY
+}
+const pixabayAPI = {
+  url: 'http://pixabay.com/api/?',
+  query: '&q=',
+  type: '&image_type=photo',
+  access: 'key=',
+  key: process.env.PIXABAY_API_KEY
+}
+
+////////////////////////////////////////////////////////
+/* API FUNCTION DEFINITIONS */
+////////////////////////////////////////////////////////
+
+// Call the geonames APIs
+async function geonamesCallAPI(userInput, geonamesApi) {
+  console.log('Calling geonames API...');
+  let geonamesAddress = geonamesAPI.url + geonamesAPI.query + userInput.destinationCity + geonamesAPI.access + geonamesAPI.username;
+  let destinationJSON = await fetch(geonamesAddress);
+  let destination = await destinationJSON.json();
+  let destinationCoords = {
+    lat: destination.geonames[0].lat,
+    lng: destination.geonames[0].lng
+  }
+  return destinationCoords;
+}
+
+// Call the weatherbit API
+async function weatherbitCallAPI(destinationCoords, weatherbitAPI) {
+  console.log('Calling weatherbit API...');
+  let weatherbitAddress = weatherbitAPI.url + weatherbitAPI.querylat + destinationCoords.lat + weatherbitAPI.querylong + destinationCoords.lng + weatherbitAPI.access + weatherbitAPI.key;
+  let weatherJSON = await fetch(weatherbitAddress);
+  let weather = await weatherJSON.json();
+  return weather;
+}
+
+// Call the pixabay API
+async function pixabayCallAPI(userInput, pixabayAPI) {
+  console.log('Calling pixabay API...');
+  let pixabayAddress = pixabayAPI.url + pixabayAPI.access + pixabayAPI.key + pixabayAPI.query + userInput.destinationCity + pixabayAPI.type
+  let pictureJSON = await fetch(pixabayAddress);
+  let picture = await pictureJSON.json();
+  return picture;
+}
 
 ////////////////////////////////////////////////////////
 /* POST ROUTE */
@@ -80,37 +114,27 @@ let projectData = {};
 // POST Route - we use this route to send data to and fro the server
 app.post('/postRoute', async function(req, res) {
     // Save the user input from the client side locally
-    userInput.arrivalDate = req.body.arrivalDate;
+    userInput.departureDate = req.body.departureDate;
     userInput.destinationCity = req.body.destinationCity;
 
     // Log in server incoming data
-    console.log('User arrival date: ' + userInput.arrivalDate);
+    console.log('User arrival date: ' + userInput.departureDate);
     console.log('User destination city: ' + userInput.destinationCity);
 
-    // Call the geonames APIs
-    let geonamesAddress = geonamesAPI.url + geonamesAPI.query + userInput.arrivalDate + geonamesAPI.access + geonamesAPI.username;
-    let destinationJSON = await fetch(geonamesAddress);
-    let destination = await destinationJSON.json();
-    let destinationCoords = {
-      lat: destination.geonames[0].lat,
-      lng: destination.geonames[0].lng
-    }
+    // Call geonames API
+    let destinationCoords = await geonamesCallAPI(userInput, geonamesAPI);
 
-    // Call the weatherbit API
-    let weatherbitAddress = weatherbitAPI.url + weatherbitAPI.querylat + destinationCoords.lat + weatherbitAPI.querylong + destinationCoords.lng + weatherbitAPI.access + weatherbitAPI.key;
-    let weatherJSON = await fetch(weatherbitAddress);
-    let weather = await weatherJSON.json();
+    // Call weatherbit API
+    let weather = await weatherbitCallAPI(destinationCoords, weatherbitAPI);
 
-    // Call the pixabay API
-    let pixabayAddress = pixabayAPI.url + pixabayAPI.access + pixabayAPI.key + pixabayAPI.query + userInput.destinationCity + pixabayAPI.type
-    let pictureJSON = await fetch(pixabayAddress);
-    let picture = await pictureJSON.json();
+    // Call pixabay API
+    let picture = await pixabayCallAPI(userInput, pixabayAPI);
 
     // Pack API results in the projectData object so we can send it back to the client side
     // The data and the city are already available on the client side but we send it back anyways so we can deal with one single object on the front end
     projectData = {
       city: userInput.destinationCity,
-      date: userInput.arrivalDate,
+      date: userInput.departureDate,
       weather: weather,
       picture: picture
     }
@@ -120,4 +144,3 @@ app.post('/postRoute', async function(req, res) {
     res.send(projectData)
     console.log('Data sent to client')
 })
-

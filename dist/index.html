@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Travel App</title>
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Giga&family=Raleway:wght@100&display=swap" rel="stylesheet">
+<link href="main.css" rel="stylesheet"></head>
+
+<body>
+
+<div id = "app">
+  <div class ="holder headline">
+    travel planner
+  </div>
+
+  <div class ="holder cityDestination">
+    <label for="cityDestination">destination</label>
+    <input type="text" id="cityDestination" placeholder="enter city here">
+  </div>
+
+  <div class ="holder departureDate">
+     <label for="departureDate">departure date</label>
+     <input class= "myInput" type="date" id="departureDate" value="">
+  </div>
+
+  <button id="button1" type = "submit">click to generate</button>
+
+  <div class = myTripTitle>
+    <div class ="holder entry">
+      <div class = "return"></div>
+      <div id = "entryHolder">
+        <div id = "itineraryTitle"></div>  
+        <div id = "date"></div> 
+        <div id = "temp"></div>
+        <div id = "location"></div> 
+        <div id = "image"></div>
+        <div id = "count"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+      });
+  }
+</script>
+
+<footer>
+  <p>by: milenas atelier<br>
+</footer>
+
+<script type="text/javascript" src="main.js"></script></body>
+</html>

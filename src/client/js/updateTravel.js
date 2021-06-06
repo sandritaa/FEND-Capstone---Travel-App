@@ -1,8 +1,4 @@
-import { callServer } from "./callServer"
-
-// Add an event listener to button1
-const travelListener = document.getElementById('button1');
-travelListener.addEventListener("click", runNewTravel);
+import { callServer } from "./callServer.js"
 
 // Function to update the travel information section of the 
 function updateTravelUI(projectData){
@@ -18,30 +14,26 @@ function updateTravelUI(projectData){
     // Modify all elements in HTML with new data
     titleElement.innerHTML = `<span class="entry-item">itinerary</span>`;
     dateElement.innerHTML = `<span class="entry-item">Date: </span>${projectData.date}`;
-    tempElement.innerHTML = `<span class="entry-item">Temperature: </span>${projectData.weather} °C`;
+    tempElement.innerHTML = `<span class="entry-item">Temperature: </span>${projectData.forecast}`;
     locationElement.innerHTML = `<span class="entry-item">City: </span>${projectData.city}`;
-    imageElement.innerHTML = `<img src=${projectData.picture.hits[0].webformatURL}>`;     
+    imageElement.innerHTML = `<img src=${projectData.photo}>`;     
     countdown.innerText = projectData.countdown + ' days to trip! ✈️';
+    console.log(projectData)
 }
 
 // Function that is called by the event listener
-function runNewTravel() {
+async function runNewTravel() {
 
     // First we call the server
-    let projectData = callServer();
-
-    // Now we check if the date inputted is further away than what the API provides. 
-    // If it is, we simply tell the user its too far in advance to display the weather but we still display eveerything else
-    // To do this, we create a new field in the object called weather
-    if (projectData.countdown >= projectData.weather.data.length + 1) {
-        projectData.weather = 'No forecast available'
-    } else {
-        projectData.weather = projectData.forecast[projectData.countdown].temp;
-    }
+    let projectData = await callServer();
 
     // Finally we update the UI
-    updateTravel(projectData)
+    updateTravelUI(projectData)
 
 }
+
+// Add an event listener to button1
+const travelListener = document.getElementById('button1');
+travelListener.addEventListener("click", runNewTravel);
 
 export { travelListener, updateTravelUI, runNewTravel }
