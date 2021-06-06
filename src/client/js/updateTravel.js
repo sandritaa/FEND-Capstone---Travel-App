@@ -33,7 +33,7 @@ async function runNewTravel() {
 }
 
 // Add an event listener to button1
-const travelListener = document.getElementById('button1');
+let travelListener = document.getElementById('button1');
 travelListener.addEventListener("click", runNewTravel);
 
 export { travelListener, updateTravelUI, runNewTravel }

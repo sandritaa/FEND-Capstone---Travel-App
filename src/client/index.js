@@ -1,5 +1,7 @@
-import { runNewTravel } from './js/updateTravel.js'
+import { travelListener } from './js/updateTravel.js'
+import { todoListener } from './js/updateTodo.js'
 
 import "./styles/style.scss"
 
-export { runNewTravel }
+export { travelListener }
+export { todoListener }
