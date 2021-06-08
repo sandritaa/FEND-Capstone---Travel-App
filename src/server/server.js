@@ -61,7 +61,7 @@ const weatherbitAPI = {
 const pixabayAPI = {
   url: 'http://pixabay.com/api/?',
   query: '&q=',
-  type: '&image_type=photo',
+  type: '&category=places&image_type=photo',
   access: 'key=',
   key: process.env.PIXABAY_API_KEY
 }
